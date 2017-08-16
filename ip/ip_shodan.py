@@ -41,18 +41,29 @@ def output(data, ip=""):
                         'Yes (Please inspect Manually on this port)')
                 if 'http' in x.keys():
                     print colored(style.BOLD + '[+] HTTP port present:\t' + style.END, 'green')
-                    print '\tTitle: %s' % x['http']['title']
-                    print '\tRobots: %s' % x['http']['robots']
-                    print '\tServer: %s' % x['http']['server']
-                    print '\tComponents: %s' % x['http']['components']
-                    print '\tSitemap: %s' % x['http']['sitemap']
+                    # Conditionalize this junk code
+                    if 'title' in x['http']:
+                        print '\tTitle: %s' % x['http']['title']
+                    if 'robots' in x['http']:
+                        print '\tRobots: %s' % x['http']['robots']
+                    if 'server' in x['http']:
+                        print '\tServer: %s' % x['http']['server']
+                    if 'components' in x['http']:
+                        print '\tComponents: %s' % x['http']['components']
+                    if 'sitemap' in x['http']:
+                        print '\tSitemap: %s' % x['http']['sitemap']
                 if 'ssh' in x.keys():
                     print colored(style.BOLD + '[+] HTTP port present:\t' + style.END, 'green')
-                    print '\tType: %s' % x['ssh']['type']
-                    print '\tCipher: %s' % x['ssh']['cipher']
-                    print '\tFingerprint: %s' % x['ssh']['fingerprint']
-                    print '\tMac: %s' % x['ssh']['mac']
-                    print '\tKey: %s' % x['ssh']['key']
+                    if 'type' in x['ssh']:
+                        print '\tType: %s' % x['ssh']['type']
+                    if 'cipher' in x['ssh']:
+                        print '\tCipher: %s' % x['ssh']['cipher']
+                    if 'fingerprint' in x['ssh']:
+                        print '\tFingerprint: %s' % x['ssh']['fingerprint']
+                    if 'mac' in x['ssh']:
+                        print '\tMac: %s' % x['ssh']['mac']
+                    if 'key' in x['ssh']:
+                        print '\tKey: %s' % x['ssh']['key']
                 if 'ssl' in x.keys():
                     print '\tSSL Versions: %s' % x['ssl']['versions']
                 if 'asn' in x.keys():

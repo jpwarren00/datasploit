@@ -29,6 +29,7 @@ def find_repos(username):
     url = "https://api.github.com/users/%s/repos?access_token=%s" % (username, access_token)
     req = requests.get(url)
     if 'API rate limit exceeded' not in req.text:
+        print(req.content)
         data = json.loads(req.content)
         if "message" in data and data['message'] == "Not Found":
             return []

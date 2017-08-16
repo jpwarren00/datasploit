@@ -22,8 +22,13 @@ class style:
 def extracting(imglinks, username, prourl, tag, attribute, value, finattrib, profile):
     res = requests.get(prourl)
     soup = BeautifulSoup(res.content, "lxml")
-    img = soup.find(tag, {attribute: value})
-    if profile == "ask.fm":
+    try:
+        img = soup.find(tag, {attribute: value})
+    except e:
+        img = None
+        print("No Url recieved.")
+    if profile == "ask.fm" and img:
+        print(img)
         img[finattrib] = "http:" + img[finattrib]
         imglinks.append(img[finattrib])
         path = "profile_pic/" + username + "/" + profile + ".jpg"
@@ -213,13 +218,15 @@ def banner():
 
 
 def main(username):
-    usernames = username_usernamesearch.main(username)
-    file_path = "profile_pic/%s" % username
-    if not os.path.exists(file_path):
-        os.makedirs(file_path)
-    imagelinks = profilepic(usernames, username)
-    print "Profile Pics saved to : %s" % file_path
-    return imagelinks
+    # usernames = username_usernamesearch.main(username)
+    # print(usernames)
+    # file_path = "profile_pic/%s" % username
+    # if not os.path.exists(file_path):
+    #     os.makedirs(file_path)
+    # imagelinks = profilepic(usernames, username)
+    # print "Profile Pics saved to : %s" % file_path
+    # return imagelinks
+    return(['disabled'])
 
 
 def output(data, username=""):
